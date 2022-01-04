@@ -132,6 +132,13 @@ RandomX_ConfigurationGraft::RandomX_ConfigurationGraft()
   RANDOMX_FREQ_IROL_R = 3;
 }
 
+RandomX_ConfigurationLozzax::RandomX_ConfigurationLozzax()
+{
+  ArgonSalt = "RandomL\x06";
+  RANDOMX_FREQ_CBRANCH = 16;
+  RANDOMX_FREQ_ISTORE  = 25;
+}
+
 RandomX_ConfigurationBase::RandomX_ConfigurationBase()
 	: ArgonMemory(262144)
         , CacheAccesses(8)
@@ -398,6 +405,7 @@ RandomX_ConfigurationSafex RandomX_SafexConfig;
 RandomX_ConfigurationKeva RandomX_KevaConfig;
 RandomX_ConfigurationScala RandomX_ScalaConfig;
 RandomX_ConfigurationGraft RandomX_GraftConfig;
+RandomX_ConfigurationLozzax RandomX_LozzaxConfig;
 
 alignas(64) RandomX_ConfigurationBase RandomX_CurrentConfig;
 

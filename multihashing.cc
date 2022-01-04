@@ -61,7 +61,7 @@ const size_t max_mem_size = 20 * 1024 * 1024;
 xmrig::VirtualMemory mem(max_mem_size, true, false, 0, 4096);
 static struct cryptonight_ctx* ctx = nullptr;
 
-const int MAXRX = 7;
+const int MAXRX = 8;
 int rx2id(xmrig::Algorithm::Id algo) {
   switch (algo) {
       case xmrig::Algorithm::RX_0:     return 0;
@@ -70,6 +70,7 @@ int rx2id(xmrig::Algorithm::Id algo) {
       case xmrig::Algorithm::RX_GRAFT: return 3;
       case xmrig::Algorithm::RX_SFX:   return 4;
       case xmrig::Algorithm::RX_KEVA:  return 5;
+      case xmrig::Algorithm::RX_LOZZ:  return 6;
       case xmrig::Algorithm::RX_XLA:   return MAXRX-1;
       default: return 0;
   }
@@ -121,6 +122,9 @@ void init_rx(const uint8_t* seed_hash_data, xmrig::Algorithm::Id algo) {
             break;
         case xmrig::Algorithm::RX_XLA:
             randomx_apply_config(RandomX_ScalaConfig);
+            break;
+        case xmrig::Algorithm::RX_LOZZ:
+            randomx_apply_config(RandomX_LozzaxConfig);
             break;
         default:
             throw std::domain_error("Unknown RandomX algo");
@@ -181,6 +185,7 @@ NAN_METHOD(randomx) {
         //case 18: xalgo = xmrig::Algorithm::RX_LOKI; break;
         case 19: xalgo = xmrig::Algorithm::RX_KEVA; break;
         case 20: xalgo = xmrig::Algorithm::RX_GRAFT; break;
+        case 21: xalgo = xmrig::Algorithm::RX_LOZZ; break;
         default: xalgo = xmrig::Algorithm::RX_0;
     }
 
